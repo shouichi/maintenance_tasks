@@ -6,11 +6,13 @@ module MaintenanceTasks
     test '.available_tasks returns list of tasks that inherit from the Task superclass' do
       expected = [
         'Maintenance::CancelledEnqueueTask',
+        'Maintenance::CustomEnumeratingTask',
         'Maintenance::EnqueueErrorTask',
         'Maintenance::ErrorTask',
         'Maintenance::ImportPostsTask',
         'Maintenance::TestTask',
         'Maintenance::UpdatePostsTask',
+        'Maintenance::UpdatePostsThrottledTask',
       ]
       assert_equal expected,
         MaintenanceTasks::Task.available_tasks.map(&:name).sort

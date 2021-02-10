@@ -15,12 +15,14 @@ module MaintenanceTasks
 
     # @api private
     CsvEnumeratorBuilder = Struct.new(:csv) do
+      # Build the enumerator for a CSV Task using Job Iteration's CsvEnumerator
       def enumerator(context:)
         JobIteration::CsvEnumerator.new(csv).rows(cursor: context.cursor)
       end
     end
     private_constant :CsvEnumeratorBuilder
 
+    # Return enumerator builder for CSV Tasks
     def enumerator_builder
       CsvEnumeratorBuilder.new(collection)
     end
